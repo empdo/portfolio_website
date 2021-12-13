@@ -14,16 +14,20 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
-
-            - name: Deploy over FTP
-              uses: SamKirkland/FTP-Deploy-Action@4.1.0
-              with:
-                server: ${{ secrets.ftp_host }}
-                username: git
-                local-dir: ./site/
-                password: ${{ secrets.ftp_password }}
-              env:
-                  user_name: "github-actions[bot]"
-                  user_email: "github-actions[bot]@users.noreply.github.com"
-                  github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-                  repository: ${{ github.repository }}
+                server: ${{ secrets.ftp_host }]
+            - name: Upload Files
+            id: upload
+            uses: Creepios/sftp-action@v1.0.3
+            with:
+              server: ${{ secrets.ftp_host }}:2022
+              username: git
+              local-dir: ./webroot/
+              host: ${{ secrets.ftp_host}}
+              port: 2022
+              username: 'git.66991d99'
+              password: ${{ secrets.ftp_password }}
+              localPath: './site/'
+              remotePath: './webroot/'
+            env:
+                user_name: "github-actions[bot]"
+                user_email: "github-actions[bot]@users.noreply.github.com"

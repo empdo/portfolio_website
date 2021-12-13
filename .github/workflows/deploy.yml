@@ -14,7 +14,7 @@ jobs:
         steps:
             - name: Checkout repository
               uses: actions/checkout@v2
-                server: ${{ secrets.ftp_host }]
+              server: ${{ secrets.ftp_host }]
             - name: Upload Files
             id: upload
             uses: Creepios/sftp-action@v1.0.3

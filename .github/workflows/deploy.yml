@@ -1,0 +1,28 @@
+name: CI/CD
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        name: upload site to host 
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+              uses: SamKirkland/FTP-Deploy-Action@4.1.0
+              with:
+                server: ${{ secrets.ftp_host }
+                username: git
+                local-dir: ./
+                password: ${{ secrets.ftp_password }}
+              env:
+                  user_name: "github-actions[bot]"
+                  user_email: "github-actions[bot]@users.noreply.github.com"
+                  github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+                  repository: ${{ github.repository }}

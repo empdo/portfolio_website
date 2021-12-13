@@ -16,18 +16,18 @@ jobs:
               uses: actions/checkout@v2
               server: ${{ secrets.ftp_host }]
             - name: Upload Files
-            id: upload
-            uses: Creepios/sftp-action@v1.0.3
-            with:
-              server: ${{ secrets.ftp_host }}:2022
-              username: git
-              local-dir: ./webroot/
-              host: ${{ secrets.ftp_host}}
-              port: 2022
-              username: 'git.66991d99'
-              password: ${{ secrets.ftp_password }}
-              localPath: './site/'
-              remotePath: './webroot/'
-            env:
-                user_name: "github-actions[bot]"
-                user_email: "github-actions[bot]@users.noreply.github.com"
+              id: upload
+              uses: Creepios/sftp-action@v1.0.3
+              with:
+                server: ${{ secrets.ftp_host }}:2022
+                username: git
+                local-dir: ./webroot/
+                host: ${{ secrets.ftp_host}}
+                port: 2022
+                username: 'git.66991d99'
+                password: ${{ secrets.ftp_password }}
+                localPath: './site/'
+                remotePath: './webroot/'
+              env:
+                  user_name: "github-actions[bot]"
+                  user_email: "github-actions[bot]@users.noreply.github.com"
